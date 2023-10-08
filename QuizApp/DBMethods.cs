@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -89,6 +90,61 @@ namespace QuizApp
 
                             string[] questionData = { questionText, answerA, answerB, answerC, answerD};
                             return questionData;
+                        }
+                        return null;
+                    }
+                }
+            }
+        }
+
+        public static void AddHighscore(string playerName, string score) 
+        {
+            string getQuestionQuery = "INSERT INTO Highscores (player_name, score) ";
+            getQuestionQuery += "VALUES (' ";
+            getQuestionQuery += (playerName + "','" + score + "') ");
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                using (SQLiteCommand writeASave = new SQLiteCommand(getQuestionQuery, connection))
+                {
+                    writeASave.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public static string[][] GetHighscoreTable()
+        {
+            string getQuestionQuery = "SELECT player_name, score ";
+            getQuestionQuery += "FROM Highscores ";
+            getQuestionQuery += " ORDER BY score DESC LIMIT 15";
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                using (SQLiteCommand getASave = new SQLiteCommand(getQuestionQuery, connection))
+                {
+                    using (SQLiteDataReader reader = getASave.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            if (reader.HasRows)
+                            {
+                                int rowCount = reader.FieldCount;
+                                string[][] highscoreData = new string[rowCount][];
+                                int row = 0;
+
+                                while (reader.Read())
+                                {
+                                    // Für jede Zeile die Daten in die Matrix einfügen.
+                                    highscoreData[row] = new string[]
+                                    {
+                            reader["player_name"].ToString(),
+                            reader["score"].ToString()
+                                    };
+                                    row++;
+                                }
+                                return highscoreData;
+                            }
                         }
                         return null;
                     }

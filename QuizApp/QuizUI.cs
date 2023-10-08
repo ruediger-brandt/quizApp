@@ -297,8 +297,9 @@ internal class QuizUI : MCQuizLogic
                 StartWindow.CreateMenue();
                 break;
             case "2":
-                DBMethods.WriteSaveState(StartWindow.playerName, Audience, Fifty, ExtraTime, Level);
-                Console.WriteLine(StartWindow.centeredString("Saved! Press any key"));
+                DBMethods.GetHighscoreTable();
+                StartWindow.printEmptyLines(5);
+                Console.WriteLine(StartWindow.centeredString("Highscores:"));
                 Console.ReadKey();
                 Console.Clear();
                 WrongAnswerScreen(qObject);
