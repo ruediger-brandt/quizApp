@@ -317,7 +317,7 @@ internal class QuizUI : MCQuizLogic
         StartWindow.printEmptyLines(5);
         for (int i = scores.Length - 1; i > -1; i--)
         {
-            Console.WriteLine(StartWindow.centeredString(scores[i][0] + ": \t\t" + scores[i][1]));
+            Console.WriteLine(StartWindow.centeredString(scores[i][0] + ": \t" + scores[i][1]));
         }
         StartWindow.printEmptyLines(3);
         Console.WriteLine(StartWindow.centeredString("How would you like to continue? Choose the corresponding number!"));
