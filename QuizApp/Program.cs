@@ -5,9 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 // To Do: -Echte Fragen finden/erzeugen kein lorem ipsum Quatsch
-// -save and resume Funktion
-// -Highscores
-// -Freitext Quiz 
+// -Highscores: sortierung fixen
 // -
 namespace QuizApp
 {

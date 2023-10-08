@@ -125,26 +125,22 @@ namespace QuizApp
                 {
                     using (SQLiteDataReader reader = getASave.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (reader.HasRows)
                         {
-                            if (reader.HasRows)
-                            {
-                                int rowCount = reader.FieldCount;
-                                string[][] highscoreData = new string[rowCount][];
-                                int row = 0;
+                            List<string[]> highscoreList = new List<string[]>();
 
-                                while (reader.Read())
+                            while (reader.Read())
+                            {
+                                string[] rowData = new string[]
                                 {
-                                    // Für jede Zeile die Daten in die Matrix einfügen.
-                                    highscoreData[row] = new string[]
-                                    {
                             reader["player_name"].ToString(),
                             reader["score"].ToString()
-                                    };
-                                    row++;
-                                }
-                                return highscoreData;
+                                };
+
+                                highscoreList.Add(rowData);
                             }
+
+                            return highscoreList.ToArray();
                         }
                         return null;
                     }

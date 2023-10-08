@@ -286,7 +286,7 @@ internal class QuizUI : MCQuizLogic
         Console.WriteLine(StartWindow.centeredString(qObject.CorrectAnswer));
         StartWindow.printEmptyLines(3);
         Console.WriteLine(StartWindow.centeredString("Sorry this was not the correct Answer!"));
-        Console.WriteLine(StartWindow.centeredString("Congratulation "+ StartWindow.playerName+" you have won " + MCQuizLogic.difficulty[Level - 1] + " Euros!"));
+        Console.WriteLine(StartWindow.centeredString("Congratulation "+ StartWindow.playerName +" you have won " + MCQuizLogic.difficulty[Math.Max(Level - 1, 0)] + " Euros!"));
         StartWindow.printEmptyLines(3);
         Console.WriteLine(StartWindow.centeredString("How would you like to continue? Choose the corresponding number!"));
         Console.WriteLine(StartWindow.centeredString("To Main Menue (Press 1) \t View Highscores(Press 2)\t End Game(3)"));
@@ -313,7 +313,8 @@ internal class QuizUI : MCQuizLogic
         string[][] scores = DBMethods.GetHighscoreTable();
         StartWindow.printEmptyLines(5);
         Console.WriteLine(StartWindow.centeredString("Highscores:"));
-        for (int i = 0; i < scores.Length; i++)
+        StartWindow.printEmptyLines(5);
+        for (int i = scores.Length - 1; i > -1; i--)
         {
             Console.WriteLine(StartWindow.centeredString(scores[i][0] + ": \t\t" + scores[i][1]));
         }
