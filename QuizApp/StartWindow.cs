@@ -102,8 +102,9 @@ namespace QuizApp
                         var resumeQuiz = new MCQuizLogic(level + 1,fifty,audience,skip);
                         resumeQuiz.RunMCQuiz();
                         break;
-                    case "3": Console.WriteLine("Highscores");
-                        break;//dummyHighscores();
+                    case "3":
+                        QuizUI.HighscorePage();
+                        break;
                     case "4": ExitControl(CreateMenue);
                         break;
 

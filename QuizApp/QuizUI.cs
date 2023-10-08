@@ -297,13 +297,8 @@ internal class QuizUI : MCQuizLogic
                 StartWindow.CreateMenue();
                 break;
             case "2":
-                DBMethods.GetHighscoreTable();
-                StartWindow.printEmptyLines(5);
-                Console.WriteLine(StartWindow.centeredString("Highscores:"));
-                Console.ReadKey();
-                Console.Clear();
-                WrongAnswerScreen(qObject);
-                break;//dummySave()
+                HighscorePage();
+                break;
             case "3":
                 StartWindow.ExitControl(doNothing, 0);
                 WrongAnswerScreen(qObject);
@@ -311,6 +306,35 @@ internal class QuizUI : MCQuizLogic
         }
     }
 
+    public static void HighscorePage()
+    {
+        Console.Clear();
+        string[] validSelection = { "1", "2", "3" };
+        string[][] scores = DBMethods.GetHighscoreTable();
+        StartWindow.printEmptyLines(5);
+        Console.WriteLine(StartWindow.centeredString("Highscores:"));
+        for (int i = 0; i < scores.Length; i++)
+        {
+            Console.WriteLine(StartWindow.centeredString(scores[i][0] + ": \t\t" + scores[i][1]));
+        }
+        StartWindow.printEmptyLines(3);
+        Console.WriteLine(StartWindow.centeredString("How would you like to continue? Choose the corresponding number!"));
+        Console.WriteLine(StartWindow.centeredString("To Main Menue (Press 1) \t Stay (Press 2)\t End Game(3)"));
+        string selection = TakeInputandCallVerify(validSelection);
+        switch (selection)
+        {
+            case "1":
+                StartWindow.CreateMenue();
+                break;
+            case "2":
+                HighscorePage();
+                break;
+            case "3":
+                StartWindow.ExitControl(doNothing, 0);
+                break;
+
+        }
+    }
     public void WinScreen()
     {
         Console.Clear();
