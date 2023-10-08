@@ -294,6 +294,7 @@ internal class QuizUI : MCQuizLogic
         switch (selection)
         {
             case "1":
+                Console.Clear();
                 StartWindow.CreateMenue();
                 break;
             case "2":
@@ -332,6 +333,7 @@ internal class QuizUI : MCQuizLogic
                 break;
             case "3":
                 StartWindow.ExitControl(doNothing, 0);
+                HighscorePage();
                 break;
 
         }

@@ -49,7 +49,8 @@ namespace QuizApp
 
         // Erstellt das Navigationsmenü
         public static void CreateMenue()
-        {
+        {   
+            Console.Clear();
             string[] validSelection = { "1", "2", "3", "4" };
             printEmptyLines(8);
             Console.WriteLine(centeredString("1: Start new Quiz!"));
