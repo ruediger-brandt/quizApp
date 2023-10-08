@@ -76,9 +76,21 @@ namespace QuizApp
                         createTableSaves.ExecuteNonQuery();
                     }
 
+                    string createTableQueryHighscores = @"
+            CREATE TABLE IF NOT EXISTS Highscores (
+                score_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                player_name TEXT NOT NULL,
+                score TEXT NOT NULL
+            )";
 
-                
-                connection.Close();
+                    using (SQLiteCommand createTableScores = new SQLiteCommand(createTableQueryHighscores, connection))
+                    {
+                        createTableScores.ExecuteNonQuery();
+                    }
+
+
+
+                    connection.Close();
                 }
             }
         }
