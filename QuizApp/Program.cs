@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 // To Do: -Echte Fragen finden/erzeugen kein lorem ipsum Quatsch
-// -Highscores: sortierung fixen
-// -
+// -Highscores: sortierung fixen, Highscores schreiben implementieren
+// -Win Screen implementieren
 namespace QuizApp
 {
     internal class Program

@@ -340,10 +340,31 @@ internal class QuizUI : MCQuizLogic
     }
     public void WinScreen()
     {
+        string[] validSelection = { "1", "2", "3" };
         Console.Clear();
-        Console.WriteLine("Party");
-        Console.WriteLine(StartWindow.centeredString("Party Message!"));
+        StartWindow.printEmptyLines(7);
+        Console.WriteLine(StartWindow.centeredString("----------------Congratulation Quizmaster " + StartWindow.playerName + "!----------------"));
+        StartWindow.printEmptyLines(7);
+        Console.WriteLine(StartWindow.centeredString("You have beaten the Quiz and won 1.000.000 Euros!"));
+        StartWindow.printEmptyLines(7);
         Console.ReadKey();
+        Console.WriteLine(StartWindow.centeredString("How would you like to continue? Choose the corresponding number!"));
+        Console.WriteLine(StartWindow.centeredString("To Main Menue (Press 1) \t View Highscores (Press 2)\t End Game(3)"));
+        string selection = TakeInputandCallVerify(validSelection);
+        switch (selection)
+        {
+            case "1":
+                StartWindow.CreateMenue();
+                break;
+            case "2":
+                HighscorePage();
+                break;
+            case "3":
+                StartWindow.ExitControl(doNothing, 0);
+                WinScreen();
+                break;
+
+        }
     }
 
     public static void doNothing() {}
