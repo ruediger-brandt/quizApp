@@ -19,14 +19,12 @@ namespace QuizApp
         private string connectionString;
         
 
-        //Gefällt mir so eigentlich nicht
-        //Vielleicht CSV import bleibt aber erstmal so
         //DB anlegen, Tabellen anlegen, Datensätze einfügen
         //Nur wenn es noch keine DB gibt
         public void InitializeDatabase()
         {
 
-            if (!DatabaseExists(connectionString))
+            if (!File.Exists(DbPath))
             {
                 using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                 {
@@ -676,7 +674,7 @@ VALUES
             CREATE TABLE IF NOT EXISTS Highscores (
                 score_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 player_name TEXT NOT NULL,
-                score TEXT NOT NULL
+                score INTEGER NOT NULL
             )";
 
                     using (SQLiteCommand createTableScores = new SQLiteCommand(createTableQueryHighscores, connection))
@@ -684,7 +682,28 @@ VALUES
                         createTableScores.ExecuteNonQuery();
                     }
 
+                    string insertBaseHighscores = @"
+            INSERT INTO Highscores (player_name ,score ) 
+            VALUES ('QuizChecker24',3),
+             ('DerQuizmeister',1000),
+             ('Gurke',500),
+             ('Mastermind',125000),
+             ('Noobinator',399),
+             ('Unwissender',100),
+             ('NotEinstein',99),
+             ('Bodenlos',10),
+             ('BoatyMcBoatface',5),
+             ('Kasalla',33),
+             ('Per Anhalter',42),
+             ('Jane Doe',111),
+             ('Stroh Dumm',1),
+             ('Sheldon',500000)
+            ";
 
+                    using (SQLiteCommand writeASave = new SQLiteCommand(insertBaseHighscores, connection))
+                    {
+                        writeASave.ExecuteNonQuery();
+                    }
 
                     connection.Close();
                 }

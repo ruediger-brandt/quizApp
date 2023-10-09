@@ -4,9 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-// To Do: -Echte Fragen finden/erzeugen kein lorem ipsum Quatsch
-// -Highscores: sortierung fixen,formatierung mehr tabs
-// -
+
 namespace QuizApp
 {
     internal class Program

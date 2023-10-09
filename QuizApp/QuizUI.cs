@@ -315,9 +315,9 @@ internal class QuizUI : MCQuizLogic
         StartWindow.printEmptyLines(5);
         Console.WriteLine(StartWindow.centeredString("Highscores:"));
         StartWindow.printEmptyLines(5);
-        for (int i = scores.Length - 1; i > -1; i--)
+        for (int i = 0; i < scores.Length; i++)
         {
-            Console.WriteLine(StartWindow.centeredString(scores[i][0] + ": \t" + scores[i][1]));
+            Console.WriteLine(new String(' ', 42) + (scores[i][0] +":"+ new String(' ', 25 - scores[i][0].Length) + "\t" + scores[i][1]));
         }
         StartWindow.printEmptyLines(3);
         Console.WriteLine(StartWindow.centeredString("How would you like to continue? Choose the corresponding number!"));

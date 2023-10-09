@@ -101,7 +101,7 @@ namespace QuizApp
         {
             string getQuestionQuery = "INSERT INTO Highscores (player_name, score) ";
             getQuestionQuery += "VALUES (' ";
-            getQuestionQuery += (playerName + "','" + score + "') ");
+            getQuestionQuery += (playerName + "'," + int.Parse(score) + ") ");
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
