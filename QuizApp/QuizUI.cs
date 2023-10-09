@@ -341,10 +341,25 @@ internal class QuizUI : MCQuizLogic
     public void WinScreen()
     {
         string[] validSelection = { "1", "2", "3" };
+        string fireworks = @"            |          |          |          
+        \  *  /      \  /  \      \  /  \      \  /  \      \  *  /
+          |*|          |*|          |*|          |*|          |*|
+    — * —|— * —  — * —|— * —  — * —|— * —  — * —|— * —  — * —|— * — * -
+          |*|          |*|          |*|          |*|          |*|
+        /  *  \      /  *  \      /  *  \      /  *  \      /  *  \
+           |          |          |          |          |    |       |
+";
+
         Console.Clear();
         StartWindow.printEmptyLines(7);
         Console.WriteLine(StartWindow.centeredString("----------------Congratulation Quizmaster " + StartWindow.playerName + "!----------------"));
-        StartWindow.printEmptyLines(7);
+        StartWindow.printEmptyLines(3);
+        string[] logoLines = fireworks.Split('\n');
+        foreach (string line in logoLines)
+        {
+            Console.WriteLine(new string(' ', 22) + line);
+        }
+        StartWindow.printEmptyLines(3);
         Console.WriteLine(StartWindow.centeredString("You have beaten the Quiz and won 1.000.000 Euros!"));
         StartWindow.printEmptyLines(7);
         Console.ReadKey();

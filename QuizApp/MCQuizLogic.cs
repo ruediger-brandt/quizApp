@@ -51,11 +51,13 @@ namespace QuizApp
                 }
                 else
                 {
+                    DBMethods.AddHighscore(StartWindow.playerName, difficulty[Math.Max(0, Level - 1)]);
                     quizUI.WrongAnswerScreen(qObjects[difficulty[Level]]);
                     // write Highscore
                     //Auswahl new game/end/main menu/highscores
                 }
             }
+            DBMethods.AddHighscore(StartWindow.playerName, "1000000");
             quizUI.WinScreen();
             // write Highscore
         }       
